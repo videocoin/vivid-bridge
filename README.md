@@ -82,3 +82,16 @@ https://eips.ethereum.org/EIPS/eip-5164
 Ethereum↔Polygon Bridge
 https://wiki.polygon.technology/docs/develop/ethereum-polygon/getting-started/
 
+Polygon Bor Fee Model
+https://wiki.polygon.technology/docs/pos/bor/#bor-fee-model
+
+How to Convert ERC-20 AXL to Native AXL
+https://axelar.network/blog/how-to-convert-erc-20-axl-to-native-axl
+
+
+Converting Native to ERC20 using Fetch.ai browser wallet
+https://medium.com/fetch-ai/converting-native-to-erc20-using-fetch-ai-browser-wallet-97bb3f8b6b72
+
+xp_network_nft_bridge
+https://github.com/vechain/grant-program/blob/master/applications/xp_network_nft_bridge.md
+

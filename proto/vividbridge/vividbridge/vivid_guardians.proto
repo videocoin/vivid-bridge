@@ -1,0 +1,11 @@
+syntax = "proto3";
+package vividbridge.vividbridge;
+
+option go_package = "vivid-bridge/x/vividbridge/types";
+
+message VividGuardians {
+  uint64 id = 1;
+  repeated string keys = 2; 
+  uint64 expirationTime = 3; 
+  string creator = 4;
+}

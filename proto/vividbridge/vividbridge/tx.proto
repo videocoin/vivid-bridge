@@ -1,13 +1,43 @@
 syntax = "proto3";
 package vividbridge.vividbridge;
 
+import "vividbridge/vividbridge/vivid_guardians.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "vivid-bridge/x/vividbridge/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+    rpc CreateVividGuardians(MsgCreateVividGuardians) returns (MsgCreateVividGuardiansResponse);
+  rpc UpdateVividGuardians(MsgUpdateVividGuardians) returns (MsgUpdateVividGuardiansResponse);
+  rpc DeleteVividGuardians(MsgDeleteVividGuardians) returns (MsgDeleteVividGuardiansResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
 }
+
+message MsgCreateVividGuardians {
+  string creator = 1;
+  repeated string keys = 2;
+  uint64 expirationTime = 3;
+}
+
+message MsgCreateVividGuardiansResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateVividGuardians {
+  string creator = 1;
+  uint64 id = 2;
+  repeated string keys = 3;
+  uint64 expirationTime = 4;
+}
+
+message MsgUpdateVividGuardiansResponse {}
+
+message MsgDeleteVividGuardians {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteVividGuardiansResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

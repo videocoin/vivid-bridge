@@ -3,6 +3,7 @@ package vividbridge.vividbridge;
 
 import "gogoproto/gogo.proto";
 import "vividbridge/vividbridge/params.proto";
+import "vividbridge/vividbridge/vivid_guardians.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "vivid-bridge/x/vividbridge/types";
@@ -10,5 +11,7 @@ option go_package = "vivid-bridge/x/vividbridge/types";
 // GenesisState defines the vividbridge module's genesis state.
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
+  repeated VividGuardians vividGuardiansList = 2 [(gogoproto.nullable) = false];
+  uint64 vividGuardiansCount = 3;
   // this line is used by starport scaffolding # genesis/proto/state
 }

@@ -24,7 +24,19 @@ var (
 )
 
 const (
-// this line is used by starport scaffolding # simapp/module/const
+	opWeightMsgCreateVividGuardians = "op_weight_msg_vivid_guardians"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCreateVividGuardians int = 100
+
+	opWeightMsgUpdateVividGuardians = "op_weight_msg_vivid_guardians"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUpdateVividGuardians int = 100
+
+	opWeightMsgDeleteVividGuardians = "op_weight_msg_vivid_guardians"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgDeleteVividGuardians int = 100
+
+	// this line is used by starport scaffolding # simapp/module/const
 )
 
 // GenerateGenesisState creates a randomized GenState of the module
@@ -35,6 +47,17 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	vividbridgeGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
+		VividGuardiansList: []types.VividGuardians{
+			{
+				Id:      0,
+				Creator: sample.AccAddress(),
+			},
+			{
+				Id:      1,
+				Creator: sample.AccAddress(),
+			},
+		},
+		VividGuardiansCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&vividbridgeGenesis)
@@ -57,6 +80,39 @@ func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 // WeightedOperations returns the all the gov module operations with their respective weights.
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
+
+	var weightMsgCreateVividGuardians int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCreateVividGuardians, &weightMsgCreateVividGuardians, nil,
+		func(_ *rand.Rand) {
+			weightMsgCreateVividGuardians = defaultWeightMsgCreateVividGuardians
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCreateVividGuardians,
+		vividbridgesimulation.SimulateMsgCreateVividGuardians(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgUpdateVividGuardians int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgUpdateVividGuardians, &weightMsgUpdateVividGuardians, nil,
+		func(_ *rand.Rand) {
+			weightMsgUpdateVividGuardians = defaultWeightMsgUpdateVividGuardians
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUpdateVividGuardians,
+		vividbridgesimulation.SimulateMsgUpdateVividGuardians(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgDeleteVividGuardians int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgDeleteVividGuardians, &weightMsgDeleteVividGuardians, nil,
+		func(_ *rand.Rand) {
+			weightMsgDeleteVividGuardians = defaultWeightMsgDeleteVividGuardians
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgDeleteVividGuardians,
+		vividbridgesimulation.SimulateMsgDeleteVividGuardians(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
 

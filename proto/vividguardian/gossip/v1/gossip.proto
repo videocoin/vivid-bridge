@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package gossip.v1;
+
+option go_package = "vivid-bridge/pkg/proto/gossip/v1/;gossipv1";
+
+message GossipMessage {
+    oneof message {
+        SignedHeartbeat signed_heartbeat = 1;
+        SignedEventWithQuorum signes_event_with_quorum = 2;
+    }
+}
+
+message SignedHeartbeat {
+    bytes heartbeat = 1;
+    bytes signature = 2;
+    bytes guardian_addr = 3;
+}
+
+message SignedEventWithQuorum {
+    bytes event = 1;
+}

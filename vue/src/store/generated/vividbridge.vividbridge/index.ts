@@ -192,19 +192,6 @@ export default {
 		},
 		
 		
-		async sendMsgUpdateVividGuardians({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.VividbridgeVividbridge.tx.sendMsgUpdateVividGuardians({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateVividGuardians:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgUpdateVividGuardians:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
 		async sendMsgCreateVividGuardians({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const client=await initClient(rootGetters)
@@ -215,6 +202,19 @@ export default {
 					throw new Error('TxClient:MsgCreateVividGuardians:Init Could not initialize signing client. Wallet is required.')
 				}else{
 					throw new Error('TxClient:MsgCreateVividGuardians:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdateVividGuardians({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const client=await initClient(rootGetters)
+				const result = await client.VividbridgeVividbridge.tx.sendMsgUpdateVividGuardians({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateVividGuardians:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateVividGuardians:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -232,19 +232,6 @@ export default {
 			}
 		},
 		
-		async MsgUpdateVividGuardians({ rootGetters }, { value }) {
-			try {
-				const client=initClient(rootGetters)
-				const msg = await client.VividbridgeVividbridge.tx.msgUpdateVividGuardians({value})
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateVividGuardians:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgUpdateVividGuardians:Create Could not create message: ' + e.message)
-				}
-			}
-		},
 		async MsgCreateVividGuardians({ rootGetters }, { value }) {
 			try {
 				const client=initClient(rootGetters)
@@ -255,6 +242,19 @@ export default {
 					throw new Error('TxClient:MsgCreateVividGuardians:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgCreateVividGuardians:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateVividGuardians({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.VividbridgeVividbridge.tx.msgUpdateVividGuardians({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateVividGuardians:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateVividGuardians:Create Could not create message: ' + e.message)
 				}
 			}
 		},

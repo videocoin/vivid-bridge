@@ -68,6 +68,8 @@ BridgeMessage(
 ) returns int sequenceNumber
 
 ```
+## Bridge Contracts
+![Token Bridge Contracts](architecture/images/contracts_class_diagram.svg)
 ## References:
 
 Wormhole Relayer
@@ -95,3 +97,5 @@ https://medium.com/fetch-ai/converting-native-to-erc20-using-fetch-ai-browser-wa
 xp_network_nft_bridge
 https://github.com/vechain/grant-program/blob/master/applications/xp_network_nft_bridge.md
 
+Introducing Binance Bridge 2.0
+https://www.binance.com/en/blog/ecosystem/introducing-binance-bridge-20-421499824684903626

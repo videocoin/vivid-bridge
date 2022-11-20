@@ -1,0 +1,30 @@
+// {type:class}
+// {direction:topDown}
+// {generate:true}
+
+[note: Token Bridge Class Diagram!{bg:cornsilk}]
+[Wormhole]^[ERC1967Proxy | constructor(impl, data)]
+
+[Wormhole]++-[Setup]
+[Wormhole]++-[Implementation]
+[Setup]^[Setters]
+[Setup]^[ERC1967Upgrade]
+[Setters]^[State | guardianSets, guardianSetIndex, sequences, messageFee, evmChainId]
+[State]+-[WormholeState]
+[State]+-[Structs.Provider]
+
+
+
+[TokenBridge]^[ERC1967Proxy]
+[TokenBridge]++-[BridgeSetup]
+[TokenBridge]++-[BridgeImplementation]
+[BridgeImplementation]^[Bridge]
+[Bridge]^[BridgeGovernance]
+[BridgeGovernance]^[BridgeGetters]
+[BridgeGovernance]^[BridgeSetters]
+[BridgeGovernance]^[ERC1967Upgrade]
+
+[BridgeSetters]^[BridgeState | wormhole, tokenImplementation, wrappedAssets, outstandingBridged]
+
+[BridgeState]++-[TokenImplementation]
+[TokenImplementation]^[TokenState | nativeContract, owner, balances, allowances, chainId]
